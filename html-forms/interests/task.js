@@ -1,4 +1,4 @@
-const checkerList = document.querySelectorAll(".interest__check"),
+let checkerList = document.querySelectorAll(".interest__check"),
   currentInterest,
   checkInterest,
   checkValue;
