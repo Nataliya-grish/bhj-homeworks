@@ -1,0 +1,26 @@
+const loader = document.getElementById("loader");
+const items = document.getElementById("items");
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://netology-slow-rest.herokuapp.com");
+xhr.send();
+
+xhr.addEventListener("readystatechange", function () {
+  if (xhr.status === 200 && xhr.readyState === xhr.DONE) {
+    loader.classList.remove("loader_active");
+    const valuteObj = JSON.parse(xhr.responseText).response.Valute;
+    for (let item in valuteObj) {
+      let newRow = document.createElement("div");
+      newRow.classList.add("item");
+      newRow.innerHTML = `<div class="item__code">
+                    ${valuteObj[item].CharCode}
+                </div>
+                <div class="item__value">
+                    ${valuteObj[item].Value}
+                </div>
+                <div class="item__currency">
+                    руб.
+                </div>`;
+      items.append(newRow);
+    }
+  }
+});
